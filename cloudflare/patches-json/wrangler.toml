@@ -1,0 +1,15 @@
+name = "revanced-patches-json"
+main = "src/index.js"
+compatibility_date = "2025-01-01"
+workers_dev = true
+
+routes = [
+  { pattern = "revanced.kareem.one/patches.json", zone_name = "kareem.one" }
+]
+
+[vars]
+PRIMARY_HOST = "revanced-patches-json.kareem-fcd.workers.dev"
+GITHUB_OWNER = "kareemlukitomo"
+GITHUB_REPO = "revanced-patches-kareem"
+ALLOWED_GITHUB_ACTORS = "kareemlukitomo,github-actions[bot]"
+ALLOW_PRERELEASE = "false"

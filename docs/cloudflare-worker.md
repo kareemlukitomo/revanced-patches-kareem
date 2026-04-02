@@ -27,7 +27,7 @@ The example worker:
 
 - `GITHUB_OWNER = kareemlukitomo`
 - `GITHUB_REPO = revanced-patches-kareem`
-- `ALLOWED_GITHUB_ACTOR = kareemlukitomo`
+- `ALLOWED_GITHUB_ACTORS = kareemlukitomo,github-actions[bot]`
 - `ALLOW_PRERELEASE = false`
 
 ## Deployment shape

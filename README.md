@@ -69,6 +69,10 @@ Example worker and notes:
 - [docs/cloudflare-worker.md](docs/cloudflare-worker.md)
 - [docs/patches-json-worker.example.js](docs/patches-json-worker.example.js)
 
+Ready-to-deploy worker project:
+- [cloudflare/patches-json/wrangler.toml](cloudflare/patches-json/wrangler.toml)
+- [cloudflare/patches-json/src/index.js](cloudflare/patches-json/src/index.js)
+
 ## Signing
 
 Release signing is optional right now.
