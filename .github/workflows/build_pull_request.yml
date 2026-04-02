@@ -22,10 +22,16 @@ jobs:
           distribution: "temurin"
           java-version: "17"
 
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Install Android build-tools
+        run: sdkmanager "build-tools;37.0.0"
+
       - name: Cache Gradle
         uses: burrunan/gradle-cache-action@v2
 
       - name: Build
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: ./gradlew build --no-daemon
+        run: ./gradlew :patches:build --no-daemon -PandroidBuildToolsDir="$ANDROID_SDK_ROOT/build-tools/37.0.0"

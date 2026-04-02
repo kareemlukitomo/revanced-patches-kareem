@@ -29,13 +29,19 @@ jobs:
           distribution: "temurin"
           java-version: "17"
 
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Install Android build-tools
+        run: sdkmanager "build-tools;37.0.0"
+
       - name: Cache Gradle
         uses: burrunan/gradle-cache-action@v2
 
       - name: Build
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: ./gradlew build clean
+        run: ./gradlew :patches:build --no-daemon -PandroidBuildToolsDir="$ANDROID_SDK_ROOT/build-tools/37.0.0"
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -47,6 +53,7 @@ jobs:
         run: npm install
 
       - name: Import GPG key
+        if: ${{ secrets.GPG_PRIVATE_KEY != '' && secrets.GPG_PASSPHRASE != '' && vars.GPG_FINGERPRINT != '' }}
         uses: crazy-max/ghaction-import-gpg@v6
         with:
           gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
