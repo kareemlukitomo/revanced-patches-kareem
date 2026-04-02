@@ -43,7 +43,7 @@
       {
         "assets": [
           {
-            "path": "patches/build/libs/patches-${nextRelease.version}-android.rvp"
+            "path": "patches/build/libs/patches-*-android.rvp"
           }
         ],
         "successComment": false
