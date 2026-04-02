@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/kareemlukitomo/revanced-patches-kareem/compare/v1.0.0...v1.1.0) (2026-04-02)
+
+
+### Features
+
+* add Cloudflare patches.json worker ([429f4b7](https://github.com/kareemlukitomo/revanced-patches-kareem/commit/429f4b70befba6d45aad133e20e4bcfb28a7d3dc))
+
 # 1.0.0 (2026-04-02)
 
 
