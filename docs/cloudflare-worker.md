@@ -29,6 +29,11 @@ The example worker:
 - `GITHUB_REPO = revanced-patches-kareem`
 - `ALLOWED_GITHUB_ACTORS = kareemlukitomo,github-actions[bot]`
 - `ALLOW_PRERELEASE = false`
+- `REQUIRE_SIGNATURE = true`
+
+With `REQUIRE_SIGNATURE = true`, the Worker serves the newest release that has both:
+- `patches-<version>-android.rvp`
+- `patches-<version>-android.rvp.asc`
 
 ## Deployment shape
 

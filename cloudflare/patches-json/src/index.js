@@ -12,10 +12,13 @@ export default {
       repo: env.GITHUB_REPO || "revanced-patches-kareem",
       allowedActors: parseAllowedActors(env.ALLOWED_GITHUB_ACTORS || env.ALLOWED_GITHUB_ACTOR || "kareemlukitomo"),
       allowPrerelease: String(env.ALLOW_PRERELEASE || "false") === "true",
+      requireSignature: String(env.REQUIRE_SIGNATURE || "true") === "true",
     };
 
     const cache = caches.default;
-    const cacheKey = new Request("https://revanced.kareem.one/patches.json");
+    const cacheKey = new Request(
+      `https://revanced.kareem.one/patches.json?requireSignature=${config.requireSignature ? "1" : "0"}`,
+    );
     const cached = await cache.match(cacheKey);
     if (cached) return cached;
 
@@ -58,12 +61,14 @@ async function findRelease(config) {
   for (const release of releases) {
     if (release.prerelease && !config.allowPrerelease) continue;
     if (!config.allowedActors.has(release.author)) continue;
+    const signatureExists = await hasAsset(release.signatureUrl);
+    if (config.requireSignature && !signatureExists) continue;
 
     return {
       ok: true,
       value: {
         ...release,
-        signatureExists: await hasAsset(release.signatureUrl),
+        signatureExists,
       },
     };
   }
