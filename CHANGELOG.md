@@ -1,3 +1,20 @@
+# 1.0.0 (2026-04-02)
+
+
+### Bug Fixes
+
+* Compile DEX without debugging information ([73f6506](https://github.com/kareemlukitomo/revanced-patches-kareem/commit/73f6506bccc01e5622a6e19bedcf6d54d3f701c7))
+* gate optional GPG import at runtime ([585145c](https://github.com/kareemlukitomo/revanced-patches-kareem/commit/585145c9f4f7986506672b04cfa591992158430a))
+* Upload asset signature by fixing asset path glob pattern ([1378304](https://github.com/kareemlukitomo/revanced-patches-kareem/commit/1378304809092e1f5a5c8fb4beb0964496222059))
+* use exec-based release flow ([60f1979](https://github.com/kareemlukitomo/revanced-patches-kareem/commit/60f1979029c3f8f0b525b54c4c2ddc68237ada2d))
+* use globbed release asset path ([dadd339](https://github.com/kareemlukitomo/revanced-patches-kareem/commit/dadd339545607ff1ef803639563edb2ab1b600ae))
+
+
+### Features
+
+* add custom X patches and Android release flow ([0936b97](https://github.com/kareemlukitomo/revanced-patches-kareem/commit/0936b973f8b44dff8483dcda0c8ec6df37fe7e7d))
+* Init ([66be625](https://github.com/kareemlukitomo/revanced-patches-kareem/commit/66be625f25ee2d678dac62a5bf4daa631284f8f6))
+
 ## [1.0.4](https://github.com/ReVanced/revanced-patches-template/compare/v1.0.3...v1.0.4) (2024-11-05)
 
 ## [1.0.4-dev.2](https://github.com/ReVanced/revanced-patches-template/compare/v1.0.4-dev.1...v1.0.4-dev.2) (2024-11-05)
