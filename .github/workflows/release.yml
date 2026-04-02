@@ -12,7 +12,6 @@ jobs:
     name: Release
     permissions:
       contents: write
-      packages: write
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -52,28 +51,8 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Detect optional signing config
-        id: signing
-        env:
-          GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
-          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
-          GPG_FINGERPRINT: ${{ vars.GPG_FINGERPRINT }}
-        run: |
-          if [ -n "$GPG_PRIVATE_KEY" ] && [ -n "$GPG_PASSPHRASE" ] && [ -n "$GPG_FINGERPRINT" ]; then
-            echo "enabled=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "enabled=false" >> "$GITHUB_OUTPUT"
-          fi
-
-      - name: Import GPG key
-        if: ${{ steps.signing.outputs.enabled == 'true' }}
-        uses: crazy-max/ghaction-import-gpg@v6
-        with:
-          gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
-          passphrase: ${{ secrets.GPG_PASSPHRASE }}
-          fingerprint: ${{ vars.GPG_FINGERPRINT }}
-
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ANDROID_BUILD_TOOLS_DIR: ${{ env.ANDROID_SDK_ROOT }}/build-tools/37.0.0
         run: npm exec semantic-release

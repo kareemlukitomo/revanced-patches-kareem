@@ -8,22 +8,32 @@
   ],
   "plugins": [
     [
-      "@semantic-release/commit-analyzer", {
+      "@semantic-release/commit-analyzer",
+      {
         "releaseRules": [
-          { "type": "build", "scope": "Needs bump", "release": "patch" }
+          {
+            "type": "build",
+            "scope": "Needs bump",
+            "release": "patch"
+          }
         ]
       }
     ],
     "@semantic-release/release-notes-generator",
     "@semantic-release/changelog",
-    "gradle-semantic-release-plugin",
+    [
+      "@semantic-release/exec",
+      {
+        "prepareCmd": "node ./scripts/prepare-release.mjs ${nextRelease.version}"
+      }
+    ],
     [
       "@semantic-release/git",
       {
         "assets": [
           "README.md",
           "CHANGELOG.md",
-          "gradle.properties",
+          "gradle.properties"
         ],
         "message": "chore: Release v${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
       }
@@ -33,17 +43,22 @@
       {
         "assets": [
           {
-            "path": "patches/build/libs/patches-*-android.rvp?(.asc)"
+            "path": "patches/build/libs/patches-${nextRelease.version}-android.rvp"
           }
         ],
-        successComment: false
+        "successComment": false
       }
     ],
     [
       "@saithodev/semantic-release-backmerge",
       {
-        backmergeBranches: [{"from": "main", "to": "dev"}],
-        clearWorkspace: true
+        "backmergeBranches": [
+          {
+            "from": "main",
+            "to": "dev"
+          }
+        ],
+        "clearWorkspace": true
       }
     ]
   ]
