@@ -95,7 +95,7 @@ tasks.jar {
         attributes(
             "name" to "Kareem ReVanced Patches",
             "version" to version.toString(),
-            "description" to "Custom Twitter/X patches by Kareem",
+            "description" to "Custom share-link patches by Kareem",
             "source" to "https://github.com/kareemlukitomo/revanced-patches-kareem",
             "author" to "Kareem Lukitomo",
             "contact" to "https://github.com/kareemlukitomo",
