@@ -6,8 +6,9 @@ This repo includes a Worker that exposes a ReVanced Manager source at:
 ## What the live worker does
 
 The current JavaScript implementation has two entry paths:
-- `revanced.kareem.one/patches.json` returns a `302` redirect to the worker's `workers.dev` hostname.
-- The `workers.dev` hostname performs the actual GitHub lookup and returns the JSON body.
+- `revanced.kareem.one/patches.json` returns the Manager-compatible JSON body directly.
+- `revanced.kareem.one/` and any other non-`/patches.json` path redirect to the repo homepage.
+- The `workers.dev` hostname redirects back to `revanced.kareem.one`.
 
 The lookup flow is:
 - fetch the repo's public GitHub releases Atom feed
@@ -32,6 +33,7 @@ The tracked worker config is intentionally public:
 - `ALLOW_PRERELEASE`
 - `REQUIRE_SIGNATURE`
 - `PRIMARY_HOST`
+- `REPO_HOMEPAGE`
 
 None of those values are secrets. They describe public repo metadata and routing policy.
 
@@ -45,7 +47,7 @@ What is not committed:
 - GPG private keys
 - GitHub access tokens
 
-The only public identifier you may want to change later for cosmetic reasons is the `workers.dev` hostname referenced by `PRIMARY_HOST`. That is not sensitive.
+The public `workers.dev` hostname still exists, but it is only a canonical redirect target helper and is not the intended user-facing entry point.
 
 ## Cache behavior
 

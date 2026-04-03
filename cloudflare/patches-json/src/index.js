@@ -1,5 +1,8 @@
 export default {
   async fetch(request, env, ctx) {
+    const githubOwner = env.GITHUB_OWNER || "kareemlukitomo";
+    const githubRepo = env.GITHUB_REPO || "revanced-patches-kareem";
+    const repoHomepage = String(env.REPO_HOMEPAGE || `https://github.com/${githubOwner}/${githubRepo}`).trim();
     const primaryHost = env.PRIMARY_HOST || "";
     const requestUrl = new URL(request.url);
     if (primaryHost && requestUrl.hostname !== primaryHost) {
@@ -7,9 +10,13 @@ export default {
       return Response.redirect(redirectUrl.toString(), 302);
     }
 
+    if (requestUrl.pathname !== "/patches.json") {
+      return Response.redirect(repoHomepage, 302);
+    }
+
     const config = {
-      owner: env.GITHUB_OWNER || "kareemlukitomo",
-      repo: env.GITHUB_REPO || "revanced-patches-kareem",
+      owner: githubOwner,
+      repo: githubRepo,
       allowedActors: parseAllowedActors(env.ALLOWED_GITHUB_ACTORS || env.ALLOWED_GITHUB_ACTOR || "kareemlukitomo"),
       allowPrerelease: String(env.ALLOW_PRERELEASE || "false") === "true",
       requireSignature: String(env.REQUIRE_SIGNATURE || "true") === "true",
